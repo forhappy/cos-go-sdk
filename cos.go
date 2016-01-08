@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tencentyun/cos-go-sdk/auth"
-	"github.com/tencentyun/cos-go-sdk/http"
-	"github.com/tencentyun/cos-go-sdk/utils"
+	"github.com/forhappy/cos-go-sdk/auth"
+	"github.com/forhappy/cos-go-sdk/http"
+	"github.com/forhappy/cos-go-sdk/utils"
 )
 
 const ENDPOINT = "http://web.file.myqcloud.com/files/v1/"

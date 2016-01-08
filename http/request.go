@@ -20,7 +20,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/tencentyun/cos-go-sdk/utils"
+	"github.com/forhappy/cos-go-sdk/utils"
 )
 
 type Request struct {
