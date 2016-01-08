@@ -322,7 +322,6 @@ func (c *Client) validateFilePath(path string) string {
 //     bucket:  Bucket 名称
 //     path:    目录路径
 //     bizAttr: 目录属性, 由业务端维护
-//     mode:    目录创建模式, 当目录路径冲突时是否覆盖原节点, OverWrite 为覆盖, Keep 为不覆盖
 //
 // 示例:
 //
