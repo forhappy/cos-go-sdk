@@ -328,7 +328,7 @@ func (c *Client) validateFilePath(path string) string {
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     res, err := client.CreateFolder("cosdemo", "/hello", "hello", cos.OverWrite)
+//     res, err := client.CreateFolder("cosdemo", "/hello", "hello")
 //     if err != nil {
 //         fmt.Println(err)
 //         return
