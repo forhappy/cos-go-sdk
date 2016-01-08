@@ -64,13 +64,12 @@ type DeleteFileAsyncResponse struct {
 //     bucket:  Bucket 名称
 //     path:    目录路径
 //     bizAttr: 目录属性, 由业务端维护
-//     mode:    目录创建模式, 当目录路径冲突时是否覆盖原节点, OverWrite 为覆盖, Keep 为不覆盖
 //
 // 示例:
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.CreateFolderAsync("cosdemo", "/hello", "hello", cos.OverWrite)
+//     resAsync := client.CreateFolderAsync("cosdemo", "/hello", "hello")
 //
 //     // Do your other work here
 //
@@ -574,7 +573,6 @@ func (c *Client) DeleteFileAsync(bucket, path string) <-chan *DeleteFileAsyncRes
 //     bucket:  Bucket 名称
 //     path:    目录路径
 //     bizAttr: 目录属性, 由业务端维护
-//     mode:    目录创建模式, 当目录路径冲突时是否覆盖原节点, OverWrite 为覆盖, Keep 为不覆盖
 //
 // 示例:
 //
@@ -583,7 +581,7 @@ func (c *Client) DeleteFileAsync(bucket, path string) <-chan *DeleteFileAsyncRes
 //
 //     wg.Add(1)
 //
-//     client.CreateFolderWithCallback("cosdemo", "/hello123", "hello", cos.Keep,
+//     client.CreateFolderWithCallback("cosdemo", "/hello123", "hello",
 //         func(res *cos.CreateFolderResponse, err error) {
 //             if err != nil {
 //                 fmt.Println(err)
