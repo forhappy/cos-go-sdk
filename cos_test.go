@@ -107,6 +107,14 @@ func TestListFolder(t *testing.T) {
 		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resList.Code, resList.Message)
 	}
 
+	resList, err = client.ListFolder(BUCKET, "/", "", Both, 100, Asc)
+	if err != nil {
+		t.Errorf("Error should match [EXPECTED:%s]:[ACTUAL:%s]", nil, err)
+	}
+	if resList.Code != 0 {
+		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resList.Code, resList.Message)
+	}
+
 	resList, err = client.ListFolder(BUCKET, folderName, "", DirectoryOnly, 100, Asc)
 	if err != nil {
 		t.Errorf("Error should match [EXPECTED:%s]:[ACTUAL:%s]", nil, err)
