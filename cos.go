@@ -138,11 +138,10 @@ type StatFolderRequest struct {
 type StatFolderResponse struct {
 	Response
 	Data struct {
-		Name      string `json:"name"`
-		BizAttr   string `json:"biz_attr"`
-		Ctime     string `json:"ctime"`
-		Mtime     string `json:"Mtime"`
-		AccessUrl string `json:"access_url"`
+		Name    string `json:"name"`
+		BizAttr string `json:"biz_attr"`
+		Ctime   string `json:"ctime"`
+		Mtime   string `json:"mtime"`
 	} `json:"data"`
 }
 
@@ -262,7 +261,7 @@ type StatFileResponse struct {
 		FileSize  string `json:"filesize"`
 		Sha       string `json:"sha"`
 		Ctime     string `json:"ctime"`
-		Mtime     string `json:"Mtime"`
+		Mtime     string `json:"mtime"`
 		AccessUrl string `json:"access_url"`
 	} `json:"data"`
 }
@@ -449,8 +448,7 @@ func (c *Client) UpdateFolder(bucket, path, bizAttr string) (*UpdateFolderRespon
 //        "\nName:", res.Data.Name,
 //        "\nBizAttr:", res.Data.BizAttr,
 //        "\nCtime:", res.Data.Ctime,
-//        "\nMtime:", res.Data.Mtime,
-//        "\nAccess Url:", res.Data.AccessUrl)
+//        "\nMtime:", res.Data.Mtime)
 //
 func (c *Client) StatFolder(bucket, path string) (*StatFolderResponse, error) {
 	var cosRequest StatFolderRequest
