@@ -90,10 +90,10 @@ func HashFileWithSha1(path string) (string, int64, error) {
 	return hex.EncodeToString(sha1.Sum(nil)), fileSize, nil
 }
 
-func HashBufferWithSha1(buf []byte) (string, error) {
+func HashBufferWithSha1(buf []byte) string {
 	sha1 := sha1.New()
 	io.WriteString(sha1, string(buf))
-	return hex.EncodeToString(sha1.Sum(nil)), nil
+	return hex.EncodeToString(sha1.Sum(nil))
 }
 
 func StructToMap(s interface{}) (map[string]string, error) {
