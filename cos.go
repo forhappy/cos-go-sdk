@@ -258,7 +258,7 @@ type StatFileResponse struct {
 	Data struct {
 		Name      string `json:"name"`
 		BizAttr   string `json:"biz_attr"`
-		FileSize  string `json:"filesize"`
+		FileSize  int64  `json:"filesize"`
 		FileLen   int64  `json:"filelen"`
 		Sha       string `json:"sha"`
 		Ctime     string `json:"ctime"`
