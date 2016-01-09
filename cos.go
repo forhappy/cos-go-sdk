@@ -758,10 +758,7 @@ func (c *Client) UploadChunk(bucket, dstPath string, chunk []byte, bizAttr strin
 	var cosRequest UploadFileRequest
 	var cosResponse UploadFileResponse
 
-	sha, err := utils.HashBufferWithSha1(chunk)
-	if err != nil {
-		return nil, err
-	}
+	sha := utils.HashBufferWithSha1(chunk)
 
 	encodedPath := utils.UrlEncode(c.validateFilePath(dstPath))
 	resource := c.generateResourceUrl(bucket, encodedPath)
@@ -992,10 +989,7 @@ func (c *Client) ContinueUploadingSliceData(bucket, dstPath string, dataSlice []
 	var cosRequest UploadSliceRequest
 	var cosResponse UploadSliceResponse
 
-	sha, err := utils.HashBufferWithSha1(dataSlice)
-	if err != nil {
-		return nil, err
-	}
+	sha := utils.HashBufferWithSha1(dataSlice)
 
 	encodedPath := utils.UrlEncode(c.validateFilePath(dstPath))
 	resource := c.generateResourceUrl(bucket, encodedPath)
