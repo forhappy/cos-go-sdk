@@ -175,8 +175,8 @@ type ListFolderResponse struct {
 		Infos     []struct {
 			Name      string `json:"name"`
 			BizAttr   string `json:"biz_attr"`
-			FileSize  string `json:"filesize"`
-			FileLen   string `json:"filelen"`
+			FileSize  int64  `json:"filesize"`
+			FileLen   int64  `json:"filelen"`
 			Sha       string `json:"sha"`
 			Ctime     string `json:"ctime"`
 			Mtime     string `json:"mtime"`
