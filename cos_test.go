@@ -160,7 +160,7 @@ func TestUploadFile(t *testing.T) {
 		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resUpload.Code, resUpload.Message)
 	}
 
-	resUpload, err = client.UploadFile(BUCKET, folderName+"/smallfile-.bin", "data/nosuchfile.bin", "Golang testcase for cos sdk UploadFile.")
+	resUpload, err = client.UploadFile(BUCKET, folderName+"/smallfile.bin", "data/nosuchfile.bin", "Golang testcase for cos sdk UploadFile.")
 	if err == nil {
 		t.Errorf("Error should match [EXPECTED:%s]:[ACTUAL:%s]", "No such file.", err)
 	}
@@ -238,12 +238,7 @@ func TestUploadSlice(t *testing.T) {
 		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s:%s]", 0, resCreate.Code, folderName, resCreate.Message)
 	}
 
-	resUpload, err := client.UploadSlice(BUCKET, folderName+"/bigfile.bin", "data/nosuchbigfile.bin", "Golang testcase for cos sdk UploadSlice.", "", 512*1024)
-	if err == nil {
-		t.Errorf("Error should match [EXPECTED:%s]:[ACTUAL:%s]", "No such file", err)
-	}
-
-	resUpload, err = client.UploadSlice(BUCKET, folderName+"/bigfile.bin", "data/bigfile.bin", "Golang testcase for cos sdk UploadSlice.", "", 512*1024)
+	resUpload, err := client.UploadSlice(BUCKET, folderName+"/bigfile.bin", "data/bigfile.bin", "Golang testcase for cos sdk UploadSlice.", "", 512*1024)
 	if err != nil {
 		t.Errorf("Error should match [EXPECTED:%s]:[ACTUAL:%s]", nil, err)
 	}
@@ -265,6 +260,11 @@ func TestUploadSlice(t *testing.T) {
 	}
 	if resDeleteFile.Code != 0 {
 		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resDeleteFile.Code, resDeleteFile.Message)
+	}
+
+	resUpload, err = client.UploadSlice(BUCKET, folderName+"/bigfile.bin", "data/nosuchbigfile.bin", "Golang testcase for cos sdk UploadSlice.", "", 512*1024)
+	if err == nil {
+		t.Errorf("Error should match [EXPECTED:%s]:[ACTUAL:%s]", "No such file", err)
 	}
 
 	resDeleteFolder, err := client.DeleteFolder(BUCKET, folderName)
