@@ -69,7 +69,7 @@ type DeleteFileAsyncResponse struct {
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.CreateFolderAsync("cosdemo", "/hello", "hello")
+//     resChan := client.CreateFolderAsync("cosdemo", "/hello", "hello")
 //
 //     // Do your other work here
 //
@@ -108,7 +108,7 @@ func (c *Client) CreateFolderAsync(bucket, path, bizAttr string) <-chan *CreateF
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.UpdateFolderAsync("cosdemo", "/hello", "hello-new-attr")
+//     resChan := client.UpdateFolderAsync("cosdemo", "/hello", "hello-new-attr")
 //
 //     // Do your other work here
 //
@@ -144,7 +144,7 @@ func (c *Client) UpdateFolderAsync(bucket, path, bizAttr string) <-chan *UpdateF
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.StatFolderAsync("cosdemo", "/hello")
+//     resChan := client.StatFolderAsync("cosdemo", "/hello")
 //
 //     // Do your other work here
 //
@@ -185,7 +185,7 @@ func (c *Client) StatFolderAsync(bucket, path string) <-chan *StatFolderAsyncRes
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.DeleteFolderAsync("cosdemo", "/hello")
+//     resChan := client.DeleteFolderAsync("cosdemo", "/hello")
 //
 //     // Do your other work here
 //
@@ -225,7 +225,7 @@ func (c *Client) DeleteFolderAsync(bucket, path string) <-chan *DeleteFolderAsyn
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.ListFolderAsync("cosdemo", "/hello", "", cos.Both, 100, cos.Asc)
+//     resChan := client.ListFolderAsync("cosdemo", "/hello", "", cos.Both, 100, cos.Asc)
 //
 //     // Do your other work here
 //
@@ -285,7 +285,7 @@ func (c *Client) ListFolderAsync(bucket, path, context string, pattern ListPatte
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.PrefixSearchAsync("cosdemo", "/hello", "A", "", cos.Both, 100, cos.Asc)
+//     resChan := client.PrefixSearchAsync("cosdemo", "/hello", "A", "", cos.Both, 100, cos.Asc)
 //
 //     // Do your other work here
 //
@@ -341,7 +341,7 @@ func (c *Client) PrefixSearchAsync(bucket, path, prefix, context string, pattern
 // 示例:
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.UploadFileAsync("cosdemo", "/hello/hello.txt", "/users/new.txt", "file attr")
+//     resChan := client.UploadFileAsync("cosdemo", "/hello/hello.txt", "/users/new.txt", "file attr")
 //
 //     // Do your other work here
 //
@@ -381,7 +381,7 @@ func (c *Client) UploadFileAsync(bucket, dstPath, srcPath, bizAttr string) <-cha
 // 示例:
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.UploadChunkAsync("cosdemo", "/hello/hello.txt", []bytes("Hello"), "test hello")
+//     resChan := client.UploadChunkAsync("cosdemo", "/hello/hello.txt", []bytes("Hello"), "test hello")
 //
 //     // Do your other work here
 //
@@ -423,7 +423,7 @@ func (c *Client) UploadChunkAsync(bucket, dstPath string, chunk []byte, bizAttr 
 // 示例:
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.UploadSliceAsync("cosdemo", "/hello/hello.bin", "/users/bigfile.bin", "file attr", "", 512 * 1024)
+//     resChan := client.UploadSliceAsync("cosdemo", "/hello/hello.bin", "/users/bigfile.bin", "file attr", "", 512 * 1024)
 //
 //     // Do your other work here
 //
@@ -463,7 +463,7 @@ func (c *Client) UploadSliceAsync(bucket, dstPath, srcPath, bizAttr, session str
 //
 //     client := cos.NewClient(appId, secretId, secretKey)
 //
-//     resAsync := client.UpdateFileAsync("cosdemo", "/hello", "hello-new-attr")
+//     resChan := client.UpdateFileAsync("cosdemo", "/hello", "hello-new-attr")
 //
 //     // Do your other work here
 //
