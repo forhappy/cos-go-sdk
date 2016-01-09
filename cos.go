@@ -259,6 +259,7 @@ type StatFileResponse struct {
 		Name      string `json:"name"`
 		BizAttr   string `json:"biz_attr"`
 		FileSize  string `json:"filesize"`
+		FileLen   int64  `json:"filelen"`
 		Sha       string `json:"sha"`
 		Ctime     string `json:"ctime"`
 		Mtime     string `json:"mtime"`
@@ -1101,6 +1102,7 @@ func (c *Client) UpdateFile(bucket, path, bizAttr string) (*UpdateFileResponse, 
 //        "\nName:", res.Data.Name,
 //        "\nBizAttr:", res.Data.BizAttr,
 //        "\nFileSize:", res.Data.FileSize,
+//        "\nFileLen:", res.Data.FileLen,
 //        "\nSha:", res.Data.Sha,
 //        "\nCtime:", res.Data.Ctime,
 //        "\nMtime:", res.Data.Mtime,

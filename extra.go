@@ -517,6 +517,7 @@ func (c *Client) UpdateFileAsync(bucket, path, bizAttr string) <-chan *UpdateFil
 //         "\nName:", res.Data.Name,
 //         "\nBizAttr:", res.Data.BizAttr,
 //         "\nFileSize:", res.Data.FileSize,
+//         "\nFileLen:", res.Data.FileLen,
 //         "\nSha:", res.Data.Sha,
 //         "\nCtime:", res.Data.Ctime,
 //         "\nMtime:", res.Data.Mtime,
@@ -1036,6 +1037,8 @@ func (c *Client) UpdateFileWithCallback(bucket, path, bizAttr string, callback f
 //                 "\nMessage:", res.Message,
 //                 "\nName:", res.Data.Name,
 //                 "\nBizAttr:", res.Data.BizAttr,
+//                 "\nFileSize:", res.Data.FileSize,
+//                 "\nFileLen:", res.Data.FileLen,
 //                 "\nCtime:", res.Data.Ctime,
 //                 "\nMtime:", res.Data.Mtime,
 //                 "\nAccess Url:", res.Data.AccessUrl)
