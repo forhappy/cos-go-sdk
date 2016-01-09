@@ -140,8 +140,6 @@ type StatFolderResponse struct {
 	Data struct {
 		Name      string `json:"name"`
 		BizAttr   string `json:"biz_attr"`
-		FileSize  int64  `json:"filesize"`
-		Sha       string `json:"sha"`
 		Ctime     string `json:"ctime"`
 		Mtime     string `json:"Mtime"`
 		AccessUrl string `json:"access_url"`
