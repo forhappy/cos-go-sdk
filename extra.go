@@ -843,35 +843,35 @@ func (c *Client) PrefixSearchWithCallback(bucket, path, prefix, context string, 
 //
 // 示例:
 //
-// client := cos.NewClient(appId, secretId, secretKey)
-// var wg = sync.WaitGroup{}
+//     client := cos.NewClient(appId, secretId, secretKey)
+//     var wg = sync.WaitGroup{}
 //
-// wg.Add(1)
+//     wg.Add(1)
 //
-// fmt.Println("Uploading...")
+//     fmt.Println("Uploading...")
 //
-// client.UploadFileWithCallback("cosdemo",
-//     "/hello/goasguen-cernvm-2015.pptx",
-//     "/Users/goasguen-cernvm-2015.pptx",
-//     "goasguen-cernvm-2015.pptx",
-//     func(res *cos.UploadFileResponse, err error) {
-//         if err != nil {
-//             fmt.Println(err)
-//             return
-//         }
+//     client.UploadFileWithCallback("cosdemo",
+//         "/hello/goasguen-cernvm-2015.pptx",
+//         "/Users/goasguen-cernvm-2015.pptx",
+//         "goasguen-cernvm-2015.pptx",
+//         func(res *cos.UploadFileResponse, err error) {
+//             if err != nil {
+//                 fmt.Println(err)
+//                 return
+//             }
 //
-//         fmt.Println("Code:", res.Code,
-//             "\nMessage:", res.Message,
-//             "\nUrl:", res.Data.Url,
-//             "\nResourcePath:", res.Data.ResourcePath,
-//             "\nAccess Url:", res.Data.AccessUrl)
+//             fmt.Println("Code:", res.Code,
+//                 "\nMessage:", res.Message,
+//                 "\nUrl:", res.Data.Url,
+//                 "\nResourcePath:", res.Data.ResourcePath,
+//                 "\nAccess Url:", res.Data.AccessUrl)
 //
-//         wg.Done()
-//     })
+//             wg.Done()
+//         })
 //
-// wg.Wait()
+//     wg.Wait()
 //
-// fmt.Println("Uploaded...")
+//     fmt.Println("Uploaded...")
 //
 func (c *Client) UploadFileWithCallback(bucket, dstPath, srcPath, bizAttr string, callback func(*UploadFileResponse, error)) {
 	go func() {
@@ -890,35 +890,35 @@ func (c *Client) UploadFileWithCallback(bucket, dstPath, srcPath, bizAttr string
 //
 // 示例:
 //
-// client := cos.NewClient(appId, secretId, secretKey)
-// var wg = sync.WaitGroup{}
+//     client := cos.NewClient(appId, secretId, secretKey)
+//     var wg = sync.WaitGroup{}
 //
-// wg.Add(1)
+//     wg.Add(1)
 //
-// fmt.Println("Uploading...")
+//     fmt.Println("Uploading...")
 //
-// client.UploadChunkWithCallback("cosdemo",
-//     "/hello/goasguen-cernvm-2015.pptx",
-//     []byte("file...bin"),
-//     "goasguen-cernvm-2015.pptx",
-//     func(res *cos.UploadChunkResponse, err error) {
-//         if err != nil {
-//             fmt.Println(err)
-//             return
-//         }
+//     client.UploadChunkWithCallback("cosdemo",
+//         "/hello/goasguen-cernvm-2015.pptx",
+//         []byte("file...bin"),
+//         "goasguen-cernvm-2015.pptx",
+//         func(res *cos.UploadChunkResponse, err error) {
+//             if err != nil {
+//                 fmt.Println(err)
+//                 return
+//             }
 //
-//         fmt.Println("Code:", res.Code,
-//             "\nMessage:", res.Message,
-//             "\nUrl:", res.Data.Url,
-//             "\nResourcePath:", res.Data.ResourcePath,
-//             "\nAccess Url:", res.Data.AccessUrl)
+//             fmt.Println("Code:", res.Code,
+//                 "\nMessage:", res.Message,
+//                 "\nUrl:", res.Data.Url,
+//                 "\nResourcePath:", res.Data.ResourcePath,
+//                 "\nAccess Url:", res.Data.AccessUrl)
 //
-//         wg.Done()
-//     })
+//             wg.Done()
+//         })
 //
-// wg.Wait()
+//     wg.Wait()
 //
-// fmt.Println("Uploaded...")
+//     fmt.Println("Uploaded...")
 //
 func (c *Client) UploadChunkWithCallback(bucket, dstPath string, chunk []byte, bizAttr string, callback func(*UploadFileResponse, error)) {
 	go func() {
@@ -939,37 +939,37 @@ func (c *Client) UploadChunkWithCallback(bucket, dstPath string, chunk []byte, b
 //
 // 示例:
 //
-// client := cos.NewClient(appId, secretId, secretKey)
-// var wg = sync.WaitGroup{}
+//     client := cos.NewClient(appId, secretId, secretKey)
+//     var wg = sync.WaitGroup{}
 //
-// wg.Add(1)
+//     wg.Add(1)
 //
-// fmt.Println("Uploading...")
+//     fmt.Println("Uploading...")
 //
-// client.UploadSliceWithCallback("cosdemo",
-//     "/hello/goasguen-cernvm-2015.pptx",
-//     "/Users/goasguen-cernvm-2015.pptx",
-//     "goasguen-cernvm-2015.pptx",
-//     "",
-//     1024*512,
-//     func(res *cos.UploadSliceResponse, err error) {
-//         if err != nil {
-//             fmt.Println(err)
-//             return
-//         }
+//     client.UploadSliceWithCallback("cosdemo",
+//         "/hello/goasguen-cernvm-2015.pptx",
+//         "/Users/goasguen-cernvm-2015.pptx",
+//         "goasguen-cernvm-2015.pptx",
+//         "",
+//         1024*512,
+//         func(res *cos.UploadSliceResponse, err error) {
+//             if err != nil {
+//                 fmt.Println(err)
+//                 return
+//             }
 //
-//         fmt.Println("Code:", res.Code,
-//             "\nMessage:", res.Message,
-//             "\nUrl:", res.Data.Url,
-//             "\nResourcePath:", res.Data.ResourcePath,
-//             "\nAccess Url:", res.Data.AccessUrl)
+//             fmt.Println("Code:", res.Code,
+//                 "\nMessage:", res.Message,
+//                 "\nUrl:", res.Data.Url,
+//                 "\nResourcePath:", res.Data.ResourcePath,
+//                 "\nAccess Url:", res.Data.AccessUrl)
 //
-//         wg.Done()
-//     })
+//             wg.Done()
+//         })
 //
-// wg.Wait()
+//     wg.Wait()
 //
-// fmt.Println("Uploaded...")
+//     fmt.Println("Uploaded...")
 //
 func (c *Client) UploadSliceWithCallback(bucket, dstPath, srcPath, bizAttr, session string, sliceSize int64, callback func(*UploadSliceResponse, error)) {
 	go func() {
