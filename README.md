@@ -17,6 +17,36 @@ go get github.com/forhappy/cos-go-sdk
 ```
 
 ##快速入门
+###文件查询完整示例
+```go
+package main
+import (
+	"fmt"
+	"github.com/forhappy/cos-go-sdk"
+)
+func main() {
+	appId := "10016247"
+	secretId := "YOUR"
+	secretKey := "ytvcnVSIC22qs24HFRdS6beGAoJfEZmA"
+	client := cos.NewClient(appId, secretId, secretKey)
+	res, err := client.StatFile("cosdemo", "/hello/hello.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("Code:", res.Code,
+		"\nMessage:", res.Message,
+		"\nName:", res.Data.Name,
+		"\nBizAttr:", res.Data.BizAttr,
+		"\nFileSize:", res.Data.FileSize,
+		"\nFileLen:", res.Data.FileLen,
+		"\nSha:", res.Data.Sha,
+		"\nCtime:", res.Data.Ctime,
+		"\nMtime:", res.Data.Mtime,
+		"\nAccess Url:", res.Data.AccessUrl)
+}
+```
+##更多示例
 
 ### 创建目录
 - 普通接口
