@@ -17,6 +17,7 @@ go get github.com/forhappy/cos-go-sdk
 ```
 
 ##快速入门
+
 ###文件查询完整示例
 ```go
 package main
@@ -46,6 +47,7 @@ func main() {
 		"\nAccess Url:", res.Data.AccessUrl)
 }
 ```
+
 ##更多示例
 
 ### 创建目录
@@ -207,3 +209,11 @@ client.DeleteFileWithCallback("cosdemo", "/hello123/hello.txt",
     })
 wg.Wait()
 ```
+
+##完整示例
+
+更多示例请查看 examples 目录
+
+##项目文档
+
+更多文档请查看 docs 目录
