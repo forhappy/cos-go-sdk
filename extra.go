@@ -584,6 +584,8 @@ func (c *Client) DeleteFileAsync(bucket, path string) <-chan *DeleteFileAsyncRes
 //
 //     client.CreateFolderWithCallback("cosdemo", "/hello123", "hello",
 //         func(res *cos.CreateFolderResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -594,7 +596,6 @@ func (c *Client) DeleteFileAsync(bucket, path string) <-chan *DeleteFileAsyncRes
 //                 "\nCtime:", res.Data.Ctime,
 //                 "\nResource Path:", res.Data.ResourcePath)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -622,6 +623,8 @@ func (c *Client) CreateFolderWithCallback(bucket, path, bizAttr string, callback
 //
 //     client.UpdateFolderWithCallback("cosdemo", "/hello123", "hello-new-attr",
 //         func(res *cos.UpdateFolderResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -630,7 +633,6 @@ func (c *Client) CreateFolderWithCallback(bucket, path, bizAttr string, callback
 //             fmt.Println("Code:", res.Code,
 //                 "\nMessage:", res.Message)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -656,6 +658,8 @@ func (c *Client) UpdateFolderWithCallback(bucket, path, bizAttr string, callback
 //     wg.Add(1)
 //     client.StatFolderWithCallback("cosdemo", "/hello",
 //         func(res *cos.StatFolderResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -669,7 +673,6 @@ func (c *Client) UpdateFolderWithCallback(bucket, path, bizAttr string, callback
 //                 "\nMtime:", res.Data.Mtime,
 //                 "\nAccess Url:", res.Data.AccessUrl)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -696,6 +699,8 @@ func (c *Client) StatFolderWithCallback(bucket, path string, callback func(*Stat
 //
 //     client.DeleteFolderWithCallback("cosdemo", "/hello123",
 //         func(res *cos.DeleteFolderResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -704,7 +709,6 @@ func (c *Client) StatFolderWithCallback(bucket, path string, callback func(*Stat
 //             fmt.Println("Code:", res.Code,
 //                 "\nMessage:", res.Message)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -735,6 +739,8 @@ func (c *Client) DeleteFolderWithCallback(bucket, path string, callback func(*De
 //
 //     client.ListFolderWithCallback("cosdemo", "/hello", "", cos.Both, 100, cos.Asc,
 //         func(res *cos.ListFolderResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -762,7 +768,6 @@ func (c *Client) DeleteFolderWithCallback(bucket, path string, callback func(*De
 //                 fmt.Println("*************************************")
 //             }
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -794,6 +799,8 @@ func (c *Client) ListFolderWithCallback(bucket, path, context string, pattern Li
 //
 //     client.PrefixSearchWithCallback("cosdemo", "/hello", "", cos.Both, 100, cos.Asc,
 //         func(res *cos.ListFolderResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -821,7 +828,6 @@ func (c *Client) ListFolderWithCallback(bucket, path, context string, pattern Li
 //                 fmt.Println("*************************************")
 //             }
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -855,6 +861,8 @@ func (c *Client) PrefixSearchWithCallback(bucket, path, prefix, context string, 
 //         "/Users/goasguen-cernvm-2015.pptx",
 //         "goasguen-cernvm-2015.pptx",
 //         func(res *cos.UploadFileResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -866,7 +874,6 @@ func (c *Client) PrefixSearchWithCallback(bucket, path, prefix, context string, 
 //                 "\nResourcePath:", res.Data.ResourcePath,
 //                 "\nAccess Url:", res.Data.AccessUrl)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -902,6 +909,8 @@ func (c *Client) UploadFileWithCallback(bucket, dstPath, srcPath, bizAttr string
 //         []byte("file...bin"),
 //         "goasguen-cernvm-2015.pptx",
 //         func(res *cos.UploadChunkResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -913,7 +922,6 @@ func (c *Client) UploadFileWithCallback(bucket, dstPath, srcPath, bizAttr string
 //                 "\nResourcePath:", res.Data.ResourcePath,
 //                 "\nAccess Url:", res.Data.AccessUrl)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -953,6 +961,8 @@ func (c *Client) UploadChunkWithCallback(bucket, dstPath string, chunk []byte, b
 //         "",
 //         1024*512,
 //         func(res *cos.UploadSliceResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -964,7 +974,6 @@ func (c *Client) UploadChunkWithCallback(bucket, dstPath string, chunk []byte, b
 //                 "\nResourcePath:", res.Data.ResourcePath,
 //                 "\nAccess Url:", res.Data.AccessUrl)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -994,6 +1003,8 @@ func (c *Client) UploadSliceWithCallback(bucket, dstPath, srcPath, bizAttr, sess
 //
 //     client.UpdateFileWithCallback("cosdemo", "/hello123/new.txt", "hello-new-attr",
 //         func(res *cos.UpdateFileResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -1002,7 +1013,6 @@ func (c *Client) UploadSliceWithCallback(bucket, dstPath, srcPath, bizAttr, sess
 //             fmt.Println("Code:", res.Code,
 //                 "\nMessage:", res.Message)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -1028,6 +1038,8 @@ func (c *Client) UpdateFileWithCallback(bucket, path, bizAttr string, callback f
 //     wg.Add(1)
 //     client.StatFileWithCallback("cosdemo", "/hello/new.txt",
 //         func(res *cos.StatFileResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -1043,7 +1055,6 @@ func (c *Client) UpdateFileWithCallback(bucket, path, bizAttr string, callback f
 //                 "\nMtime:", res.Data.Mtime,
 //                 "\nAccess Url:", res.Data.AccessUrl)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()
@@ -1070,6 +1081,8 @@ func (c *Client) StatFileWithCallback(bucket, path string, callback func(*StatFi
 //
 //     client.DeleteFileWithCallback("cosdemo", "/hello123/new.txt",
 //         func(res *cos.DeleteFileResponse, err error) {
+//             defer wg.Done()
+//
 //             if err != nil {
 //                 fmt.Println(err)
 //                 return
@@ -1078,7 +1091,6 @@ func (c *Client) StatFileWithCallback(bucket, path string, callback func(*StatFi
 //             fmt.Println("Code:", res.Code,
 //                 "\nMessage:", res.Message)
 //
-//             wg.Done()
 //         })
 //
 //     wg.Wait()

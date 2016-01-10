@@ -87,6 +87,7 @@ var wg = sync.WaitGroup{}
 wg.Add(1)
 client.CreateFolderWithCallback("cosdemo", "/hello123", "hello",
     func(res *cos.CreateFolderResponse, err error) {
+        defer wg.Done()
         if err != nil {
             fmt.Println(err)
             return
@@ -95,7 +96,6 @@ client.CreateFolderWithCallback("cosdemo", "/hello123", "hello",
             "\nMessage:", res.Message,
             "\nCtime:", res.Data.Ctime,
             "\nResource Path:", res.Data.ResourcePath)
-        wg.Done()
     })
 wg.Wait()
 ```
@@ -146,6 +146,7 @@ client.UploadFileWithCallback("cosdemo",
     "/Users/goasguen-cernvm-2015.pptx",
     "goasguen-cernvm-2015.pptx",
     func(res *cos.UploadFileResponse, err error) {
+        defer wg.Done()
         if err != nil {
             fmt.Println(err)
             return
@@ -155,7 +156,6 @@ client.UploadFileWithCallback("cosdemo",
             "\nUrl:", res.Data.Url,
             "\nResourcePath:", res.Data.ResourcePath,
             "\nAccess Url:", res.Data.AccessUrl)
-        wg.Done()
     })
 wg.Wait()
 fmt.Println("Uploaded...")
@@ -197,13 +197,13 @@ var wg = sync.WaitGroup{}
 wg.Add(1)
 client.DeleteFileWithCallback("cosdemo", "/hello123/hello.txt",
     func(res *cos.DeleteFileResponse, err error) {
+        defer wg.Done()
         if err != nil {
             fmt.Println(err)
             return
         }
         fmt.Println("Code:", res.Code,
             "\nMessage:", res.Message)
-        wg.Done()
     })
 wg.Wait()
 ```
