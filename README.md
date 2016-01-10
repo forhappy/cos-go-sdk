@@ -1,7 +1,6 @@
 [![Build Status](https://drone.io/github.com/forhappy/cos-go-sdk/status.png)](https://drone.io/github.com/forhappy/cos-go-sdk/latest)
 [![Coverage Status](https://coveralls.io/repos/forhappy/cos-go-sdk/badge.svg?branch=master&service=github)](https://coveralls.io/github/forhappy/cos-go-sdk?branch=master)
-[![GoDoc](https://godoc.org/github.com/forhappy/cos-go-sdk?status.png)](https://godoc.org/github.com/forhappy/cos-go-sdk)
-
+[![GoDoc](https://godoc.org/github.com/forhappy/cos-go-sdk?status.svg)](https://godoc.org/github.com/forhappy/cos-go-sdk)
 ##COS-Go-SDK 简介
 - 腾讯云对象存储服务（Cloud Object Service）是基于腾讯多年海量服务经验，对外提供的可靠、安全、易用的海量存储服务。
 - 腾讯云对象存储服务提供多样化接入方式，稳定安全，无线扩容以及遍布全国的加速节点为您提供高质量的上传与下载。
@@ -16,6 +15,9 @@
 ```bash
 go get github.com/forhappy/cos-go-sdk
 ```
+
+##API 文档
+[![GoDoc](https://godoc.org/github.com/forhappy/cos-go-sdk?status.svg)](https://godoc.org/github.com/forhappy/cos-go-sdk)
 
 ##快速入门
 
