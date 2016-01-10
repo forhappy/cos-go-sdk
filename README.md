@@ -25,9 +25,9 @@ import (
 	"github.com/forhappy/cos-go-sdk"
 )
 func main() {
-	appId := "10016247"
-	secretId := "YOUR"
-	secretKey := "ytvcnVSIC22qs24HFRdS6beGAoJfEZmA"
+	appId := "YOUR-APP-ID"
+	secretId := "YOUR-SECRET-ID"
+	secretKey := "YOUR-SECRET-KEY"
 	client := cos.NewClient(appId, secretId, secretKey)
 	res, err := client.StatFile("cosdemo", "/hello/hello.txt")
 	if err != nil {
