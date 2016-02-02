@@ -190,6 +190,44 @@ func TestUploadFile(t *testing.T) {
 	}
 }
 
+func TestUploadFileWithTimeout(t *testing.T) {
+	client := NewClient(APPID, SECRETID, SECRETKEY)
+
+	folderName := "testing" + strconv.Itoa(rand.Intn(1000000000))
+	resCreate, err := client.CreateFolder(BUCKET, folderName, "attr")
+	if err != nil {
+		t.Errorf("Error should match [EXPECTED:nil]:[ACTUAL:%s:%s]", err, resCreate.Message)
+	}
+	if resCreate.Code != 0 {
+		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s:%s]", 0, resCreate.Code, folderName, resCreate.Message)
+	}
+
+	client.SetTimeout(100 * time.Millisecond)
+	_, err = client.UploadFile(BUCKET, folderName+"/smallfile.bin", "data/smallfile.bin", "Golang testcase for cos sdk UploadFile.")
+	if err != nil {
+		if !client.IsTimeout(err) {
+			t.Errorf("Should timeout here")
+		}
+	}
+
+	client.SetTimeout(-1 * time.Millisecond)
+	resDeleteFile, err := client.DeleteFile(BUCKET, folderName+"/smallfile.bin")
+	if err != nil {
+		t.Errorf("Error should match [EXPECTED:nil]:[ACTUAL:%s]", err)
+	}
+	if resDeleteFile.Code != 0 {
+		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resDeleteFile.Code, resDeleteFile.Message)
+	}
+
+	resDeleteFolder, err := client.DeleteFolder(BUCKET, folderName)
+	if err != nil {
+		t.Errorf("Error should match [EXPECTED:nil]:[ACTUAL:%s]", err)
+	}
+	if resDeleteFolder.Code != 0 {
+		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resDeleteFolder.Code, resDeleteFolder.Message)
+	}
+}
+
 func TestPrepareToUploadSlice(t *testing.T) {
 	client := NewClient(APPID, SECRETID, SECRETKEY)
 
