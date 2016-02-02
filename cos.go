@@ -17,6 +17,9 @@ import (
 const ENDPOINT = "http://web.file.myqcloud.com/files/v1/"
 const EXPIRES = 60 * 5
 
+const requestCanceled = "request canceled while waiting for connection"
+const requestOnClosedConnection = "use of closed network connection"
+
 // 腾讯云 COS API 客户端
 type Client struct {
 	AppId     string        // 项目 ID
@@ -83,13 +86,19 @@ func NewClient(appId, secretId, secretKey string) *Client {
 		AppId:     appId,
 		SecretId:  secretId,
 		SecretKey: secretKey,
-		Timeout:   10000 * time.Millisecond,
+		Timeout:   -1,
 	}
 }
 
 // 设置客户端 HTTP 请求超时时长
 func (c *Client) SetTimeout(timeout time.Duration) {
 	c.Timeout = timeout
+}
+
+// 判断客户端是否超时
+func (c Client) IsTimeout(err error) bool {
+	return strings.HasSuffix(err.Error(), requestCanceled) ||
+		strings.HasSuffix(err.Error(), requestOnClosedConnection)
 }
 
 // COS API 请求参数封装

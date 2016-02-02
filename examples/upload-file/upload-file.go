@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/forhappy/cos-go-sdk"
 )
@@ -12,10 +13,16 @@ func main() {
 	secretKey := "ytvcnVSIC22qs24HFRdS6beGAoJfEZmA"
 
 	client := cos.NewClient(appId, secretId, secretKey)
+	client.SetTimeout(5000 * time.Millisecond)
 
-	res, err := client.UploadFile("cosdemo", "/hello/hello.txt", "/Users/hpfu/new.txt", "new testcases")
+	res, err := client.UploadFile("cosdemo", "/hello/spark.pdf", "/Users/hpfu/spark.pdf", "new testcases")
 	if err != nil {
-		fmt.Println(err)
+		if client.IsTimeout(err) {
+			fmt.Println("Request timeout.")
+		} else {
+			fmt.Println(err)
+		}
+
 		return
 	}
 
