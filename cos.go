@@ -1,6 +1,7 @@
 package cos
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -736,6 +737,31 @@ func (c *Client) UploadFile(bucket, dstPath, srcPath, bizAttr string) (*UploadFi
 	fileContent, err := ioutil.ReadFile(srcPath)
 	if err != nil {
 		return nil, err
+	}
+
+	fileSize, err := utils.GetFileSize(srcPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if fileSize > 5*1024*1024 {
+		var res UploadFileResponse
+		uploadSliceResponse, err := c.UploadSlice(bucket, dstPath, srcPath, bizAttr, "", 1024*512)
+		if err != nil {
+			return nil, err
+		}
+
+		uploadSliceResponseBytes, err := json.Marshal(uploadSliceResponse)
+		if err != nil {
+			return nil, err
+		}
+
+		err = json.Unmarshal(uploadSliceResponseBytes, &res)
+		if err != nil {
+			return nil, err
+		}
+
+		return &res, nil
 	}
 
 	return c.UploadChunk(bucket, dstPath, fileContent, bizAttr)

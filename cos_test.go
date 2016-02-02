@@ -168,12 +168,28 @@ func TestUploadFile(t *testing.T) {
 		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resUpload.Code, resUpload.Message)
 	}
 
+	resUpload, err = client.UploadFile(BUCKET, folderName+"/bigfile.bin", "data/bigfile.bin", "Golang testcase for cos sdk UploadFile.")
+	if err != nil {
+		t.Errorf("Error should match [EXPECTED:nil]:[ACTUAL:%s]", err)
+	}
+	if resUpload.Code != 0 {
+		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resUpload.Code, resUpload.Message)
+	}
+
 	resUpload, err = client.UploadFile(BUCKET, folderName+"/smallfile.bin", "data/nosuchfile.bin", "Golang testcase for cos sdk UploadFile.")
 	if err == nil {
 		t.Errorf("Error should match [EXPECTED:%s]:[ACTUAL:%s]", "No such file.", err)
 	}
 
 	resDeleteFile, err := client.DeleteFile(BUCKET, folderName+"/smallfile.bin")
+	if err != nil {
+		t.Errorf("Error should match [EXPECTED:nil]:[ACTUAL:%s]", err)
+	}
+	if resDeleteFile.Code != 0 {
+		t.Errorf("Return code should match [EXPECTED:%d]:[ACTUAL:%d:%s]", 0, resDeleteFile.Code, resDeleteFile.Message)
+	}
+
+	resDeleteFile, err = client.DeleteFile(BUCKET, folderName+"/bigfile.bin")
 	if err != nil {
 		t.Errorf("Error should match [EXPECTED:nil]:[ACTUAL:%s]", err)
 	}
