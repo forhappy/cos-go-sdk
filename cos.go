@@ -326,6 +326,24 @@ func (c *Client) validateFilePath(path string) string {
 	return validFilePath
 }
 
+func (c *Client) validateSliceSize(sliceSize int64) int64 {
+	if sliceSize < 8*1024 {
+		return 8 * 1024
+	} else if sliceSize > 2*1024*1024 {
+		return 2 * 1024 * 1024
+	}
+
+	sliceSize -= 1
+	sliceSize |= (sliceSize >> 1)
+	sliceSize |= (sliceSize >> 2)
+	sliceSize |= (sliceSize >> 4)
+	sliceSize |= (sliceSize >> 8)
+	sliceSize |= (sliceSize >> 16)
+	sliceSize += 1
+
+	return sliceSize
+}
+
 // 创建目录
 //     bucket:  Bucket 名称
 //     path:    目录路径
@@ -854,6 +872,7 @@ func (c *Client) UploadChunk(bucket, dstPath string, chunk []byte, bizAttr strin
 //         "\nAccess Url:", res.Data.AccessUrl)
 //
 func (c *Client) UploadSlice(bucket, dstPath, srcPath, bizAttr, session string, sliceSize int64) (*UploadSliceResponse, error) {
+	sliceSize = c.validateSliceSize(sliceSize)
 	preparing, err := c.PrepareToUploadSlice(bucket, dstPath, srcPath, bizAttr, session, sliceSize)
 	if err != nil {
 		return nil, err

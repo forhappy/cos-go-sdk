@@ -16,6 +16,31 @@ func init() {
 	rand.Seed(time.Now().Unix())
 }
 
+func TestValidateSliceSize(t *testing.T) {
+	client := NewClient(APPID, SECRETID, SECRETKEY)
+
+	var sliceSizeTable = []struct {
+		n        int64
+		expected int64
+	}{
+		{-1, 8 * 1024},
+		{2, 8 * 1024},
+		{8192, 8192},
+		{65625, 131072},
+		{524288, 524288},
+		{1572864, 2 * 1024 * 1024},
+		{2097152, 2 * 1024 * 1024},
+		{3456345656, 2 * 1024 * 1024},
+	}
+
+	for _, entry := range sliceSizeTable {
+		actual := client.validateSliceSize(entry.n)
+		if actual != entry.expected {
+			t.Errorf("validateSliceSize(%d): expected %d, actual %d", entry.n, entry.expected, actual)
+		}
+	}
+}
+
 func TestCreateAndDeleteFolder(t *testing.T) {
 	client := NewClient(APPID, SECRETID, SECRETKEY)
 	client.SetTimeout(time.Second * 5)
